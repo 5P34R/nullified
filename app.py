@@ -6,6 +6,7 @@ import urllib.parse
 import urllib.error
 import json
 import configparser
+import tweepy
 
 
 config = configparser.ConfigParser()
@@ -20,6 +21,7 @@ request_token_url = 'https://api.twitter.com/oauth/request_token'
 access_token_url = 'https://api.twitter.com/oauth/access_token'
 authorize_url = 'https://api.twitter.com/oauth/authorize'
 show_user_url = 'https://api.twitter.com/1.1/users/show.json'
+tweet_url = 'https://api.twitter.com/1.1/statuses/update.json'
 
 # Support keys from environment vars (Heroku).
 app.config['APP_CONSUMER_KEY'] =config["twitter"]["api_key"]
@@ -101,7 +103,7 @@ def callback():
 
     resp, content = client.request(access_token_url, "POST")
     access_token = dict(urllib.parse.parse_qsl(content))
-    print(access_token)
+
     screen_name = access_token[b'screen_name'].decode('utf-8')
     user_id = access_token[b'user_id'].decode('utf-8')
 
@@ -115,6 +117,12 @@ def callback():
     real_client = oauth.Client(consumer, real_token)
     real_resp, real_content = real_client.request(
         show_user_url + '?user_id=' + user_id, "GET")
+
+    # Tweeting user
+    real_token = oauth.Token(real_oauth_token, real_oauth_token_secret)
+    real_client = oauth.Client(consumer, real_token)
+    real_resp, real_content = real_client.request(
+        tweet_url+'status=test' , "POST")
 
     if real_resp['status'] != '200':
         error_message = "Invalid response from Twitter API GET users/show: {status}".format(
@@ -138,31 +146,3 @@ def callback():
 @app.errorhandler(500)
 def internal_server_error(e):
     return render_template('error.html', error_message='uncaught exception'), 500
-# import os
-# from flask import Flask, redirect, url_for
-# from flask_dance.contrib.twitter import make_twitter_blueprint, twitter
-# import configparser
-
-
-# config = configparser.ConfigParser()
-# config.read('config.ini')
-
-
-
-# app = Flask(__name__)
-# app.secret_key = "supersekrit"
-# app.config["TWITTER_OAUTH_CLIENT_KEY"] = config["twitter"]["api_key"]
-# app.config["TWITTER_OAUTH_CLIENT_SECRET"] = config["twitter"]["api_key_secret"]
-# twitter_bp = make_twitter_blueprint()
-# app.register_blueprint(twitter_bp, url_prefix="/login")
-
-# @app.route("/")
-# def index():
-#     if not twitter.authorized:
-#         return redirect(url_for("twitter.login"))
-#     resp = twitter.get("account/verify_credentials.json")
-#     assert resp.ok
-#     return "You are @{screen_name} on Twitter".format(screen_name=resp.json()["screen_name"])
-
-# if __name__ == "__main__":
-#         app.run(host='0.0.0.0', port=5000, debug=True)
