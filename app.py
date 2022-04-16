@@ -33,7 +33,7 @@ APP_CONSUMER_SECRET = config["twitter"]["api_key_secret"]
 
 oauth_store = {}
 
-Mymood = ""
+global Mymood
 
 @app.route('/')
 def hello():
@@ -49,6 +49,7 @@ def mymood():
             rand_quote = quotes.quotes[emmood][random.randint(0, l-1)]
             print(rand_quote)
             Mymood = rand_quote
+            print(Mymood)
     # print(quotes.quotes["happy"])
     return render_template('mymood.html')
 
