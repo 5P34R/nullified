@@ -135,8 +135,6 @@ def callback():
             status=resp['status'])
         return render_template('error.html', error_message=error_message)
 
-    print("status",real_resp['status'])
-
     if real_resp['status'] != '200':
         error_message = "Invalid response from Twitter API GET users/show: {status}".format(
             status=real_resp['status'])
