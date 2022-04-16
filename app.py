@@ -1,14 +1,8 @@
-import os
-from pydoc import cli
 from flask import Flask, render_template, request, url_for
 import oauth2 as oauth
-import urllib.request
-import urllib.parse
-import urllib.error
+import urllib
 import json
 import configparser
-import tweepy
-
 
 config = configparser.ConfigParser()
 config.read('config.ini')
