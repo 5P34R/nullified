@@ -100,6 +100,7 @@ def callback():
 
     # unless oauth_token is still stored locally, return error
     if oauth_token not in oauth_store:
+        print("oauth store", oauth_store)
         return render_template('error.html', error_message="oauth_token not found locally")
 
     oauth_token_secret = oauth_store[oauth_token]
