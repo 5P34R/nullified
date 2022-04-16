@@ -131,6 +131,16 @@ def callback():
     followers_count = response['followers_count']
     name = response['name']
 
+    # tweeting 
+    resp, content = real_client.request(tweet_url, "POST", body=urllib.parse.urlencode({
+        "status":"Its from a bot"
+    }))
+    if resp['status'] != '200':
+        error_message = "Invalid response from Twitter API GET users/show: {status}".format(
+            status=resp['status'])
+        return render_template('error.html', error_message=error_message)
+
+
     # don't keep this token and secret in memory any longer
     del oauth_store[oauth_token]
 
