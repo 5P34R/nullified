@@ -132,10 +132,10 @@ def callback():
         show_user_url + '?user_id=' + user_id, "GET")
     print(f"eral reponse: {real_resp['status']} real content: {real_content}")
 
-    if real_resp['status'] != '200':
-        error_message = "Invalid response from Twitter API GET users/show: {status}".format(
-            status=real_resp['status'])
-        return render_template('error.html', error_message=error_message)
+    # if real_resp['status'] != '200':
+    #     error_message = "Invalid response from Twitter API GET users/show: {status}".format(
+    #         status=real_resp['status'])
+    #     return render_template('error.html', error_message=error_message)
 
     response = json.loads(real_content.decode('utf-8'))
 
