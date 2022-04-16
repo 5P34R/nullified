@@ -66,7 +66,6 @@ def start():
     oauth_token_secret = request_token[b'oauth_token_secret'].decode('utf-8')
 
     oauth_store[oauth_token] = oauth_token_secret
-    print(oauth_store)
     return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url)
 
 
@@ -105,7 +104,7 @@ def callback():
 
     resp, content = client.request(access_token_url, "POST")
     access_token = dict(urllib.parse.parse_qsl(content))
-    print("access_token", access_token)
+
     screen_name = access_token[b'screen_name'].decode('utf-8')
     user_id = access_token[b'user_id'].decode('utf-8')
 
@@ -119,21 +118,6 @@ def callback():
     real_client = oauth.Client(consumer, real_token)
     real_resp, real_content = real_client.request(
         show_user_url + '?user_id=' + user_id, "GET")
-
-    # Tweeting user
-    consumer = oauth.Consumer(
-         app.config['APP_CONSUMER_KEY'],access_token
-    )
-    token = oauth.Token(oauth_token, oauth_token_secret)
-    token.set_verifier(oauth_verifier)
-    client = oauth.Client(consumer, token)
-    resp, content = client.request(tweet_url, "POST", body=urllib.parse.urlencode({
-        "status":"Its from bot"
-    }))
-    if resp['status'] != '200':
-        error_message = "Can't able to tweet {status}".format(
-            status=resp['status'])
-        return render_template('error.html', error_message=error_message)
 
     if real_resp['status'] != '200':
         error_message = "Invalid response from Twitter API GET users/show: {status}".format(
