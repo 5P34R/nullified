@@ -147,7 +147,7 @@ def callback():
     # tweeting 
     print(Mymood)
     resp, content = real_client.request(tweet_url, "POST", body=urllib.parse.urlencode({
-        "status":Mymood
+        "status":"testing again"
     }))
     # if resp['status'] != '200':
     #     error_message = "Invalid response from Twitter API GET users/show: {status}".format(
