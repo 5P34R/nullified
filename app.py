@@ -11,9 +11,9 @@ config.read('config.ini')
 
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("FLASK_SECRET_KEY", "supersekrit")
-app.config["TWITTER_OAUTH_CLIENT_KEY"] = os.environ.get("TWITTER_OAUTH_CLIENT_KEY")
-app.config["TWITTER_OAUTH_CLIENT_SECRET"] = os.environ.get("TWITTER_OAUTH_CLIENT_SECRET")
+app.secret_key = "supersekrit"
+app.config["TWITTER_OAUTH_CLIENT_KEY"] = config["twitter"]["api_key"]
+app.config["TWITTER_OAUTH_CLIENT_SECRET"] = config["twitter"]["api_key_secret"]
 twitter_bp = make_twitter_blueprint()
 app.register_blueprint(twitter_bp, url_prefix="/login")
 
