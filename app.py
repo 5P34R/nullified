@@ -65,6 +65,7 @@ def start():
     oauth_token_secret = request_token[b'oauth_token_secret'].decode('utf-8')
 
     oauth_store[oauth_token] = oauth_token_secret
+    print(oauth_store)
     return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url)
 
 
