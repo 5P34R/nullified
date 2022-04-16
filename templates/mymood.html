@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}start{% endblock %}
+{% block containercontent %}
+<div class="container mx-auto">
+    <div class="grid h-screen place-items-center">
+      <h1 class="text-3xl font-mono font-semibold mx-auto">Choose your emotion</h1>
+      <div>
+          <form action="" method="post">
+          <div class="flex space-x-10">
+              <button type="submit" name="mood" value="happy" class="flex flex-col justify-center">
+                <img src="../static/happy.png" alt="happy" class="h-16 w-16 ml-6">
+                  <h1 class="mt-4 bg-gray-200 text-blue-600 p-4 rounded-full px-10 hover:bg-blue-600 hover:text-white uppercase">Happy</h1>
+              </button>
+              <button type="submit" name="mood" value="sad">
+                <img src="../static/sad.png" alt="sad" class="h-16 w-16 ml-5">
+                  <h1 class="mt-4 bg-gray-200 text-blue-600 p-4 rounded-full px-12 hover:bg-blue-600 hover:text-white uppercase">Sad</h1>
+              </button>
+              <button type="submit" name="mood" value="funny">
+                <img src="../static/funny.png" alt="funny" class="h-16 w-16 ml-6">
+                  <h1 class="mt-4 bg-gray-200 text-blue-600 p-4 rounded-full px-10 hover:bg-blue-600 hover:text-white uppercase">Funny</h1>
+              </button>
+          </div>
+        </div>
+         <div>
+         </form>
+         <div class="">
+             <a href="/start" class="bg-[#1d9bf0] text-white px-6 p-4 rounded-full flex">
+                 Next
+                <img src="../static/lessthan.png" class="h-8 w-8">
+            </a>
+         </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

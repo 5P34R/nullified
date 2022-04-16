@@ -3,6 +3,8 @@ import oauth2 as oauth
 import urllib
 import json
 import configparser
+import random
+import quotes
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -31,10 +33,25 @@ APP_CONSUMER_SECRET = config["twitter"]["api_key_secret"]
 
 oauth_store = {}
 
+Mymood = ''
 
 @app.route('/')
 def hello():
     return render_template('index.html')
+
+@app.route('/mymood', methods=['GET','POST'])
+def mymood():
+    moods = ['happy', 'sad', 'funny']
+    if request.method == "POST":
+        emmood = request.form['mood']
+        if emmood.lower() in moods:
+            l = len(quotes.quotes[emmood])
+            rand_quote = quotes.quotes[emmood][random.randint(0, l-1)]
+            print(rand_quote)
+            Mymood = rand_quote
+    # print(quotes.quotes["happy"])
+    return render_template('mymood.html')
+
 
 
 @app.route('/start')
@@ -127,7 +144,7 @@ def callback():
 
     # tweeting 
     resp, content = real_client.request(tweet_url, "POST", body=urllib.parse.urlencode({
-        "status":"Its from a bot"
+        "status":Mymood
     }))
     if resp['status'] != '200':
         error_message = "Invalid response from Twitter API GET users/show: {status}".format(
