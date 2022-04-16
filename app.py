@@ -24,3 +24,6 @@ def index():
     resp = twitter.get("account/verify_credentials.json")
     assert resp.ok
     return "You are @{screen_name} on Twitter".format(screen_name=resp.json()["screen_name"])
+
+if __name__ == "__main__":
+        app.run(host='0.0.0.0', port=5000, debug=True)
