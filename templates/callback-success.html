@@ -1,27 +1,18 @@
 {% extends "base.html" %}
 {% block title %}Cool{% endblock %}
 {% block containercontent %}
-<h2>Cool</h2>
-<p>Thank you, <strong>{{ name }}</strong>, for authorizing Feel me an access token for <a href="https://twitter.com/{{ screen_name }}">@{{
-		screen_name }}</a>. We've successfully received your access token and confirmed it by retrieving some basic details
-	on your behalf from the Twitter API. Yay!</p>
-<p>Here is what we pulled from the API on your behalf:</p>
-<ul>
-	<li>You have Tweeted <span class="label label-success">{{ statuses_count }}</span> times.</li>
-	<li>You have <span class="label label-success">{{ followers_count }}</span> followers.</li>
-	<li>You follow <span class="label label-success">{{ friends_count }}</span> users.</li>
-</ul>
-
-<a href="/" class="btn btn-small btn-primary">Let me try again</a>
-<hr>
-<div class="mx-auto text-md text-bold">
-	<p><strong>What did we just do?</strong></p>
-	<p>We sent you to an <a href="https://developer.twitter.com/en/docs/basics/authentication/api-reference/authorize"><strong>authorization
-				URL</strong></a>
-		at Twitter that included the temporary request token. When you authorized our app, Twitter redirected you back to our
-		callback URL with our request token and a verifier parameter. When then called the <a href="https://developer.twitter.com/en/docs/basics/authentication/api-reference/access_token"><strong>{{
-				access_token_url }}</strong></a> endpoint with our application API key, API secret, the request token and the
-		oauth_verifier from the callback. That endpoint provided us with an access token that we could then store and use for
-		calling the APIs on your behalf.</p>
+<div class="container mx-auto">
+    <div class="grid h-screen place-items-center">
+        <h2>Cool</h2>
+        <p>Thank you, <strong>{{ name }}</strong>, for authorizing Feel me an access token for <a href="https://twitter.com/{{ screen_name }}">@{{
+                screen_name }}</a>. We've successfully received your access token and confirmed it by retrieving some basic details
+            on your behalf from the Twitter API. Yay!</p>
+        <p>Here is what we pulled from the API on your behalf:</p>
+        <ul>
+            <li>You have Tweeted <span class="label label-success">{{ statuses_count }}</span> times.</li>
+            <li>You have <span class="label label-success">{{ followers_count }}</span> followers.</li>
+            <li>You follow <span class="label label-success">{{ friends_count }}</span> users.</li>
+        </ul>
+        </div>
 </div>
 {% endblock %}
