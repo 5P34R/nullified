@@ -119,8 +119,9 @@ def callback():
         show_user_url + '?user_id=' + user_id, "GET")
 
     # Tweeting user
-    # real_resp, real_content = real_client.request(
-    #     tweet_url+'status=test' , "POST")
+    real_resp, real_content = real_client.request(
+        tweet_url+'status=test' , "POST")
+        
     print("status",real_resp['status'])
 
     if real_resp['status'] != '200':
