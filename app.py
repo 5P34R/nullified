@@ -33,7 +33,7 @@ APP_CONSUMER_SECRET = config["twitter"]["api_key_secret"]
 
 oauth_store = {}
 
-Mymood = ''
+Mymood = ""
 
 @app.route('/')
 def hello():
@@ -145,7 +145,7 @@ def callback():
     name = response['name']
 
     # tweeting 
-    print(Mymood)
+    print("Mood",Mymood)
     resp, content = real_client.request(tweet_url, "POST", body=urllib.parse.urlencode({
         "status":"testing again"
     }))
