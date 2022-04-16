@@ -41,22 +41,6 @@ def hello():
 
 @app.route('/mymood', methods=['GET','POST'])
 def mymood():
-    # moods = ['happy', 'sad', 'funny']
-    # if request.method == "POST":
-    #     emmood = request.form['mood']
-    #     if emmood.lower() in moods:
-    #         l = len(quotes.quotes[emmood])
-    #         rand_quote = quotes.quotes[emmood][random.randint(0, l-1)]
-    #         print(rand_quote)
-    #         Mymood = rand_quote
-    #         print("mood:",Mymood)
-    # print(quotes.quotes["happy"])
-    return render_template('mymood.html')
-
-
-
-@app.route('/start', methods=['GET','POST'])
-def start():
     moods = ['happy', 'sad', 'funny']
     if request.method == "POST":
         emmood = request.form['mood']
@@ -66,6 +50,14 @@ def start():
             print(rand_quote)
             Mymood = rand_quote
             print("mood:",Mymood)
+    print(quotes.quotes["happy"])
+
+
+
+
+@app.route('/start')
+def start():
+    
     # note that the external callback URL must be added to the whitelist on
     # the developer.twitter.com portal, inside the app settings
     app_callback_url = url_for('callback', _external=True)

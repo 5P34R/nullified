@@ -3,10 +3,13 @@
 {% block containercontent %}
 
 <div class="grid place-items-center h-screen">
-    <h2>start (someplace inside your app)</h2>
-    <p>We've generated the OAuth request token (<code>{{ oauth_token }}</code>) and are ready for you to authorize <strong>twauth-web</strong>!
-        Just click the button below, you'll be taken to Twitter to login (if you aren't already) and to grant access to
-        <strong>twauth-web</strong>. Afterward you'll be redirected back to us.</p>
+    <div>
+        <h2>start (someplace inside your app)</h2>
+        <p>We've generated the OAuth request token (<code>{{ oauth_token }}</code>) and are ready for you to authorize <strong>twauth-web</strong>!
+            Just click the button below, you'll be taken to Twitter to login (if you aren't already) and to grant access to
+            <strong>twauth-web</strong>. Afterward you'll be redirected back to us.</p>
+    </div>
+    
     <p><a href="{{ authorize_url }}?oauth_token={{ oauth_token }}" class="bg-[#1d9bf0] text-white px-6 p-4 rounded-full">Authorize Me</a></p>
     
 </div>
