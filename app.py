@@ -103,7 +103,7 @@ def callback():
 
     resp, content = client.request(access_token_url, "POST")
     access_token = dict(urllib.parse.parse_qsl(content))
-
+    print("resp",resp)
     screen_name = access_token[b'screen_name'].decode('utf-8')
     user_id = access_token[b'user_id'].decode('utf-8')
 
