@@ -1,4 +1,5 @@
 import os
+from pydoc import cli
 from flask import Flask, render_template, request, url_for
 import oauth2 as oauth
 import urllib.request
@@ -120,8 +121,19 @@ def callback():
         show_user_url + '?user_id=' + user_id, "GET")
 
     # Tweeting user
-    real_resp, real_content = real_client.request(
-        tweet_url+'?status=test' , "POST")
+    consumer = oauth.Consumer(
+         app.config['APP_CONSUMER_KEY'],access_token
+    )
+    token = oauth.Token(oauth_token, oauth_token_secret)
+    token.set_verifier(oauth_verifier)
+    client = oauth.Client(consumer, token)
+    resp, content = client.request(tweet_url, "POST", body=urllib.parse.urlencode({
+        "status":"Its from bot"
+    }))
+    if resp['status'] != '200':
+        error_message = "Can't able to tweet {status}".format(
+            status=resp['status'])
+        return render_template('error.html', error_message=error_message)
 
     print("status",real_resp['status'])
 
