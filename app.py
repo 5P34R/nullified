@@ -130,7 +130,8 @@ def callback():
     real_client = oauth.Client(consumer, real_token)
     real_resp, real_content = real_client.request(
         show_user_url + '?user_id=' + user_id, "GET")
-    print(f"eral reponse: {real_resp} real content: {real_content}")
+    print(f"eral reponse: {real_resp['status']} real content: {real_content}")
+
     if real_resp['status'] != '200':
         error_message = "Invalid response from Twitter API GET users/show: {status}".format(
             status=real_resp['status'])
