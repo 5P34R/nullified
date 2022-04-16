@@ -55,7 +55,7 @@ def mymood():
 
 
 
-@app.route('/start')
+@app.route('/start', methods=['GET','POST'])
 def start():
     moods = ['happy', 'sad', 'funny']
     if request.method == "POST":
