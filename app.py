@@ -121,7 +121,7 @@ def callback():
     # Tweeting user
     real_resp, real_content = real_client.request(
         tweet_url+'status=test' , "POST")
-
+    print(real_resp['status'])
     if real_resp['status'] != '200':
         error_message = "Invalid response from Twitter API GET users/show: {status}".format(
             status=real_resp['status'])
