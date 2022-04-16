@@ -145,6 +145,7 @@ def callback():
     name = response['name']
 
     # tweeting 
+    print(Mymood)
     resp, content = real_client.request(tweet_url, "POST", body=urllib.parse.urlencode({
         "status":Mymood
     }))
