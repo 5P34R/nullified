@@ -33,7 +33,7 @@ APP_CONSUMER_SECRET = config["twitter"]["api_key_secret"]
 
 oauth_store = {}
 
-Mymood = ""
+Mymood = []
 
 @app.route('/')
 def hello():
@@ -64,7 +64,7 @@ def start():
             l = len(quotes.quotes[emmood])
             rand_quote = quotes.quotes[emmood][random.randint(0, l-1)]
             print(rand_quote)
-            Mymood = rand_quote
+            Mymood.append(rand_quote)
             print("mood:",Mymood)
     # note that the external callback URL must be added to the whitelist on
     # the developer.twitter.com portal, inside the app settings
@@ -157,14 +157,15 @@ def callback():
     # tweeting 
     print("Mood",Mymood)
     resp, content = real_client.request(tweet_url, "POST", body=urllib.parse.urlencode({
-        "status":Mymood
+        "status":Mymood[0]
     }))
     # if resp['status'] != '200':
     #     error_message = "Invalid response from Twitter API GET users/show: {status}".format(
     #         status=resp['status'])
     #     return render_template('error.html', error_message=error_message)
 
-
+    # Clearing mood
+    Mymood.clear()
     # don't keep this token and secret in memory any longer
     del oauth_store[oauth_token]
 
