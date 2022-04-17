@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Error</h1>
-    <p>{{error_message}}</p>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Error{% endblock %}
+{% block containercontent %}
+<div class="container mx-auto">
+    <div class="grid place-items-center h-screen">
+        <h1 class="text-3xl">Error</h1>
+        <p class="text-3xl text-[#f4212e]">{{error_message}}</p>
+        <a href="/"><button class="p-4 px-6 rounded-full bg-[#f4212e] text-white">Go back</button></a>a>
+    </div>
+</div>
+
+{% endblock %}
