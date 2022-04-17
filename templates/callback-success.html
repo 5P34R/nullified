@@ -3,16 +3,18 @@
 {% block containercontent %}
 <div class="container mx-auto">
     <div class="grid h-screen place-items-center">
-        <h2>Cool</h2>
-        <p>Thank you, <strong>{{ name }}</strong>, for authorizing Feel me an access token for <a href="https://twitter.com/{{ screen_name }}">@{{
-                screen_name }}</a>. We've successfully received your access token and confirmed it by retrieving some basic details
-            on your behalf from the Twitter API. Yay!</p>
-        <p>Here is what we pulled from the API on your behalf:</p>
-        <ul>
-            <li>You have Tweeted <span class="label label-success">{{ statuses_count }}</span> times.</li>
-            <li>You have <span class="label label-success">{{ followers_count }}</span> followers.</li>
-            <li>You follow <span class="label label-success">{{ friends_count }}</span> users.</li>
-        </ul>
+      <div class="flex flex-col justify-center">
+        <p>Hy <strong>{{ name }}</strong></p>
+        <h3>We have sent you a surprise...😉</h3>
+        <h3>Check you twitter</h3>
+      </div>
+        <div>
+            <li>You have Tweeted <span class="font-bold">{{ statuses_count }}</span> times 😁.</li>
+            <li>You have <span class="font-bold">{{ followers_count }}</span> followers. 😲</li>
+            <li>You follow <span class="font-bold">{{ friends_count }}</span> users.😍</li>
+        </div>
+        <div></div>
         </div>
 </div>
+		<hr>
 {% endblock %}
